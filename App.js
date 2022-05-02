@@ -1,14 +1,13 @@
-import {View} from 'react-native'
 import React from 'react';
-import Login from './screens/Login'
-import Otp from './screens/Otp'
-import Home from './screens/Home'
+import { Provider } from 'react-redux';
+import store from './store';
+import AppRoute from './navigations/navigator';
 const App = () => {
   return (
-    //<Login />
-    //<Otp />
-    <Home />
-  )
-}
+    <Provider store={store}>
+      <AppRoute />
+    </Provider>
+  );
+};
 
-export default App
+export default App;

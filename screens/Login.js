@@ -1,11 +1,15 @@
 import * as React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
 import { Formik } from 'formik';
+import {loginRegisterUser} from '../services/api.js'
 
-const HomeScreen = () => {      
+const HomeScreen = () => {   
+    const dispatch = useDispatch()   
     return(
         <View style={{ flex: 1 }}>
-            <View style={{ alignItems: 'center', paddingTop: 150 }}>
+            <Button title='Click' onPress={() => loginRegisterUser({dispatch})}></Button>
+            <View style={{ alignItems: 'center', paddingTop: 100 }}>
                 <Text style={{ fontFamily: 'serif', fontSize: 32, paddingBottom: 30 }}>
                     Prem Poshak
                 </Text>
@@ -15,8 +19,8 @@ const HomeScreen = () => {
                 />
             </View>
             <Formik
-                initialValues={{ email: '' }}
-                onSubmit={values => console.log(values)}
+                initialValues={{ phone: '' }}
+                onSubmit={values => handleFormSubmit()}
             >
                 {({ handleChange, handleBlur, handleSubmit, values }) => (
                 <View style={{ alignItems: 'center', paddingTop: 30 }}>
@@ -24,9 +28,9 @@ const HomeScreen = () => {
                     placeholder="Phone"
                     style={{borderWidth: 1, borderRadius: 10, borderColor: '#808080', width: 200}}
                     keyboardType={'phone-pad'}
-                    onChangeText={handleChange('email')}
-                    onBlur={handleBlur('email')}
-                    value={values.email}
+                    onChangeText={handleChange('phone')}
+                    onBlur={handleBlur('phone')}
+                    value={values.phone}
                     />
                     <TouchableOpacity
                         style={{
